@@ -16,26 +16,25 @@ import com.myfittinglife.recyclerviewselectdemo.R
 class SingleSelectAdapter(var mDataList: MutableList<String>) :
     RecyclerView.Adapter<SingleSelectAdapter.MyViewHolder>() {
 
-    //选择的位置(-1则代表默认没有选中，0代表默认选中第一个)
-    var selPosition = 0
-    //临时记录上次选择的位置
-    var temp =-1
-
     companion object{
         const val TAG ="ceshi"
     }
+    //选择的位置(-1则代表默认没有选中，0代表默认选中第一个)
+    var selPosition = 0
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //日期
-        var date = itemView.findViewById<TextView>(R.id.tvDate)
+    //临时记录上次选择的位置
+    var temp =-1
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleSelectAdapter.MyViewHolder {
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.item_single_select, parent, false)
+        return MyViewHolder(view)
     }
-
 
     override fun getItemCount(): Int {
         return mDataList.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SingleSelectAdapter.MyViewHolder, position: Int) {
         holder.date.text = mDataList[position]
 
         holder.itemView.isSelected = holder.layoutPosition==selPosition
@@ -48,12 +47,18 @@ class SingleSelectAdapter(var mDataList: MutableList<String>) :
             selPosition = holder.layoutPosition
             //更新旧位置
             notifyItemChanged(temp)
-
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.item_single_select, parent, false)
-        return MyViewHolder(view)
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        //日期
+        var date = itemView.findViewById<TextView>(R.id.tvDate)
     }
+
+
+
+
+
+
+
 }

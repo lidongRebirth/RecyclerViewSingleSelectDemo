@@ -2,34 +2,33 @@ package com.myfittinglife.recyclerviewselectdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.myfittinglife.recyclerviewselectdemo.adapter.SingleSelectAdapter
-import kotlinx.android.synthetic.main.activity_single_select.*
+import com.myfittinglife.recyclerviewselectdemo.adapter.SingleSelectAdapter2
+import kotlinx.android.synthetic.main.activity_single_select2.*
 
 /**
  @Author LD
- @Time 2020/11/17 15:46
- @Describe 单选
+ @Time 2021/12/11 9:46
+ @Describe 单选，可不选择
  @Modify
 */
-
-class SingleSelectActivity : AppCompatActivity() {
+class SingleSelect2Activity : AppCompatActivity() {
 
     var dataList = mutableListOf<String>()
     var singleSelectAdapter =
-        SingleSelectAdapter(
+        SingleSelectAdapter2(
             dataList
         )
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_single_select)
+        setContentView(R.layout.activity_single_select2)
 
         initData()
         initRecyclerView()
-
     }
 
     private fun  initData(){
@@ -63,5 +62,17 @@ class SingleSelectActivity : AppCompatActivity() {
         //将动画去除
         (mRecyclerView.itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
         mRecyclerView.adapter = singleSelectAdapter
+
+        singleSelectAdapter.setOnMyItemClickListener(object :SingleSelectAdapter2.MyItemClickListener{
+            override fun onClick(position: Int, isSelect: Boolean) {
+                if(isSelect){
+                    Toast.makeText(this@SingleSelect2Activity,"选中：${dataList[position]}",Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@SingleSelect2Activity,"取消选中：${dataList[position]}",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        })
     }
+
 }

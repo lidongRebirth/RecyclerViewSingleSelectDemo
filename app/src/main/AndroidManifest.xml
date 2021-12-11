@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.myfittinglife.recyclerviewselectdemo.MutilSelectActivity"></activity>
-        <activity android:name="com.myfittinglife.recyclerviewselectdemo.SingleSelectActivity" />
-        <activity android:name="com.myfittinglife.recyclerviewselectdemo.MainActivity">
+        <activity android:name=".SingleSelect2Activity"></activity>
+        <activity android:name=".MutilSelectActivity" />
+        <activity android:name=".SingleSelectActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

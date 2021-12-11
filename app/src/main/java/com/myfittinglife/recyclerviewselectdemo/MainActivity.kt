@@ -19,9 +19,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        //单选
+        //单选(必选一个)
         btnSingleSelect.setOnClickListener {
             startActivity(Intent(this,SingleSelectActivity::class.java))
+        }
+        //单选(可不选择)
+        btnSingleSelect2.setOnClickListener {
+            startActivity(Intent(this,SingleSelect2Activity::class.java))
         }
 
         //多选
